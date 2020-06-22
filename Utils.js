@@ -75,7 +75,7 @@ module.exports = {
           if (data) {
             res.send({
               total: data.length ? data.length : 1,
-              data: data
+              data: [data]
             });
           }
         })
@@ -117,7 +117,7 @@ module.exports = {
 
         res.send({
           total: data.length ? data.length : 1,
-          data: data
+          data: [data]
         });
       });
     });
@@ -141,7 +141,7 @@ module.exports = {
         .then((data) => {
           res.send({
             total: 1,
-            data: data
+            data: [data]
           });
         })
         .catch((err) => {
