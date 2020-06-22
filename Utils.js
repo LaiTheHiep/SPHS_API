@@ -36,15 +36,15 @@ module.exports = {
   get(app, objectSchema, link) {
     app.get(link, (req, res) => {
       this.connect();
-      var query = req.body;
+      var query = req.query;
       var _skip = env.skip;
       var _limit = env.limit;
       if (query['$skip']) {
-        _skip = query['$skip'];
+        _skip = parseInt(query['$skip']);
         delete query['$skip'];
       }
       if (query['$limit']) {
-        _limit = query['$limit'];
+        _limit = parseInt(query['$limit']);
         delete query['$limit'];
       }
       objectSchema.find(query).skip(_skip).limit(_limit).exec((err, data) => {
