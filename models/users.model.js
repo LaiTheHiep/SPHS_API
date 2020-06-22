@@ -4,8 +4,8 @@ const env = require('../const_env');
 const userSchema = mongoose.Schema({
   account: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  name: { type: String, unique: true, required: true },
-  companyId: { type: String, unique: true },
+  name: { type: String, required: true },
+  companyId: { type: String, required: true },
   cmt: { type: String, unique: true, required: true },
   phone: { type: String, unique: true, required: true },
   email: { type: String, unique: true },
@@ -13,9 +13,9 @@ const userSchema = mongoose.Schema({
   numberPlate: { type: String, unique: true, required: true },
   balance: { type: Number, default: 0 },
   description: { type: String },
-  vehicleColor: { type: String, unique: true },
-  vehicleBranch: { type: String, unique: true },
-  vehicleType: { type: String, unique: true },
+  vehicleColor: { type: String, required: true },
+  vehicleBranch: { type: String, required: true },
+  vehicleType: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });
