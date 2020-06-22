@@ -125,7 +125,7 @@ module.exports = {
 
   delete(app, objectSchema, link) {
     app.delete(link, (req, res) => {
-      var id = req.body._id;
+      var id = req.query._id;
       if (!id) {
         res.send({
           total: 0,
