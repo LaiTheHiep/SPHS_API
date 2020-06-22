@@ -19,3 +19,10 @@ exports.db_collection = {
   packingTickets: 'parkingTickets',
   vehicleTypes: 'vehicleTypes'
 };
+
+// limit get list data
+const skip = 0;
+const limit = 200;
+
+exports.skip = skip;
+exports.limit = limit;
