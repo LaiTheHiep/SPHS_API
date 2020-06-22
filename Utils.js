@@ -24,9 +24,9 @@ module.exports = {
       MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db(db_name);
-        dbo.createCollection(e, function (err, res) {
+        dbo.createCollection(env.db_collection[e], function (err, res) {
           if (err) throw err;
-          console.log(`Collection ${e} created!`);
+          console.log(`Collection ${env.db_collection[e]} created!`);
           db.close();
         });
       });
