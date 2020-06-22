@@ -27,7 +27,7 @@ const role = require('./models/roles.model');
 const role_link = `/${env.db_collection.roles}`;
 Utils.get(app, role, role_link);
 Utils.post(app, role, role_link);
-Utils.patch(app, role, role_link);
+Utils.put(app, role, role_link);
 Utils.delete(app, role, role_link);
 
 // Start the server

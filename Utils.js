@@ -89,8 +89,8 @@ module.exports = {
     })
   },
 
-  patch(app, objectSchema, link) {
-    app.patch(link, (req, res) => {
+  put(app, objectSchema, link) {
+    app.put(link, (req, res) => {
       var id = req.body._id;
       if (!id) {
         res.send({
