@@ -9,6 +9,7 @@
 # production
 /build
 /test
+/.vscode
 
 # misc
 .DS_Store

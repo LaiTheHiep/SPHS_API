@@ -16,8 +16,8 @@ exports.db_collection = {
   users: 'users',
   transactions: 'transactions',
   companies: 'companies',
-  packingTickets: 'parkingTickets',
-  vehicleTypes: 'vehicleTypes'
+  packingTickets: 'parkingtickets',
+  vehicleTypes: 'vehicletypes'
 };
 
 // limit get list data
