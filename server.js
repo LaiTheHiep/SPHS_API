@@ -26,6 +26,7 @@ Utils.delete(app, role, role_link);
 const user = require('./models/users.model');
 const user_link = `/${env.db_collection.users}`;
 const user_api = require('./api/users.api');
+user_api.authentication(app, '/authentication');
 // Utils.get(app, user, user_link);
 user_api.get(app);
 Utils.post(app, user, user_link);

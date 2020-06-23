@@ -62,5 +62,32 @@ module.exports = {
         })
       });
     });
+  },
+
+  authentication(app, _link) {
+    app.post(_link, (req, res) => {
+      var query = req.body;
+      Utils.connect();
+      objectSchema.findOne({ account: query.account, password: query.password }, (err, data) => {
+        if (err) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: err.name,
+            errorMessage: err.message
+          });
+          return;
+        }
+        var token = Utils.createToken(data);
+        data.password = undefined;
+        res.send({
+          total: 1,
+          data: {
+            ...data._doc,
+            accessToken: token
+          }
+        });
+      });
+    });
   }
 }

@@ -159,7 +159,7 @@ module.exports = {
 
   post(app, objectSchema, link) {
     app.post(link, (req, res) => {
-      this.checkToken(req.body.accessToken).then((dataToken) => {
+      this.checkToken(req.query.accessToken).then((dataToken) => {
         if (dataToken.errorMessage) {
           res.send({
             total: 0,
@@ -205,7 +205,7 @@ module.exports = {
 
   put(app, objectSchema, link) {
     app.put(link, (req, res) => {
-      this.checkToken(req.body.accessToken).then((dataToken) => {
+      this.checkToken(req.query.accessToken).then((dataToken) => {
         if (dataToken.errorMessage) {
           res.send({
             total: 0,
