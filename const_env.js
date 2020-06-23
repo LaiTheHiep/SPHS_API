@@ -26,3 +26,9 @@ const limit = 200;
 
 exports.skip = skip;
 exports.limit = limit;
+
+const PRIVATE_KEY = 'Hat Dau Nho - Manchester United';
+exports.PRIVATE_KEY = PRIVATE_KEY;
+
+const EXPIRY_TOKEN = 86400000; // 1day (milliseconds)
+exports.EXPIRY_TOKEN = EXPIRY_TOKEN;
