@@ -128,6 +128,7 @@ module.exports = {
         var query = req.query;
         var _skip = env.skip;
         var _limit = env.limit;
+        var _sort = { ...env.sort };
         delete query.accessToken;
         if (query['$skip']) {
           _skip = parseInt(query['$skip']);
@@ -137,7 +138,14 @@ module.exports = {
           _limit = parseInt(query['$limit']);
           delete query['$limit'];
         }
-        objectSchema.find(query).skip(_skip).limit(_limit).exec((err, data) => {
+        if (query['$sort']) {
+          let _temp_sort = query['$sort'].trim().substring(1, query['$sort'].trim().length - 1);
+          let _arr_sort = _temp_sort.split(':');
+          _sort = {};
+          _sort[_arr_sort[0].trim()] = parseInt(_arr_sort[1].trim())
+          delete query['$sort'];
+        }
+        objectSchema.find(query).skip(_skip).limit(_limit).sort({ ..._sort }).exec((err, data) => {
           if (err) {
             res.send({
               total: 0,

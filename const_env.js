@@ -23,9 +23,11 @@ exports.db_collection = {
 // limit get list data
 const skip = 0;
 const limit = 200;
+const sort = {createdAt: -1};
 
 exports.skip = skip;
 exports.limit = limit;
+exports.sort = sort;
 
 const PRIVATE_KEY = 'Hat Dau Nho - Manchester United';
 exports.PRIVATE_KEY = PRIVATE_KEY;
