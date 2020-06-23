@@ -32,3 +32,30 @@ exports.PRIVATE_KEY = PRIVATE_KEY;
 
 const EXPIRY_TOKEN = 86400000; // 1day (milliseconds)
 exports.EXPIRY_TOKEN = EXPIRY_TOKEN;
+
+exports.FORBIDDEN = {
+  get: {
+    admin: [],
+    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`]
+  },
+  post: {
+    admin: [],
+    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.packingTickets}`]
+  },
+  put: {
+    admin: [],
+    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`],
+    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`, `/${this.db_collection.packingTickets}`]
+  },
+  delete: {
+    admin: [],
+    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.packingTickets}`, `/${this.db_collection.users}`, `/${this.db_collection.transactions}`]
+  }
+};

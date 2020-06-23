@@ -92,6 +92,15 @@ module.exports = {
     };
   },
 
+  checkForbidden(method, role, link) {
+    var _result = env.FORBIDDEN[method][role].find(e => e === link);
+    if (!_result) {
+      return true;
+    }
+
+    return false;
+  },
+
   get(app, objectSchema, link) {
     app.get(link, (req, res) => {
       this.checkToken(req.query.accessToken).then((dataToken) => {
@@ -104,6 +113,17 @@ module.exports = {
           });
           return;
         }
+
+        if (!this.checkForbidden('get', dataToken.role, link)) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: '403',
+            errorMessage: 'Account can not access system by function'
+          });
+          return;
+        }
+
         this.connect();
         var query = req.query;
         var _skip = env.skip;
@@ -149,6 +169,17 @@ module.exports = {
           });
           return;
         }
+
+        if (!this.checkForbidden('post', dataToken.role, link)) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: '403',
+            errorMessage: 'Account can not access system by function'
+          });
+          return;
+        }
+
         this.connect();
         var query = req.body;
         delete query.accessToken;
@@ -184,6 +215,17 @@ module.exports = {
           });
           return;
         }
+
+        if (!this.checkForbidden('put', dataToken.role, link)) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: '403',
+            errorMessage: 'Account can not access system by function'
+          });
+          return;
+        }
+
         var id = req.body._id;
         if (!id) {
           res.send({
@@ -230,6 +272,17 @@ module.exports = {
           });
           return;
         }
+
+        if (!this.checkForbidden('delete', dataToken.role, link)) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: '403',
+            errorMessage: 'Account can not access system by function'
+          });
+          return;
+        }
+
         var id = req.query._id;
         if (!id) {
           res.send({

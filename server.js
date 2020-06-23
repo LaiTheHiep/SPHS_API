@@ -25,14 +25,15 @@ Utils.delete(app, role, role_link);
 
 const user = require('./models/users.model');
 const user_link = `/${env.db_collection.users}`;
-Utils.get(app, user, user_link);
+const user_api = require('./api/users.api');
+// Utils.get(app, user, user_link);
+user_api.get(app);
 Utils.post(app, user, user_link);
 Utils.put(app, user, user_link);
 Utils.delete(app, user, user_link);
 
 const parkingTicket = require('./models/parkingTickets.model');
 const parkingTicket_link = `/${env.db_collection.packingTickets}`;
-console.log(parkingTicket_link);
 Utils.get(app, parkingTicket, parkingTicket_link);
 Utils.post(app, parkingTicket, parkingTicket_link);
 Utils.put(app, parkingTicket, parkingTicket_link);
