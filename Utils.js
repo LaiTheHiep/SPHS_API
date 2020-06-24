@@ -32,6 +32,72 @@ module.exports = {
         });
       });
     });
+
+    // create role
+    let roleSchema = require('./models/roles.model');
+    this.connect();
+    let list_roles = [
+      { name: 'admin', description: 'Admin' },
+      { name: 'manager', description: 'Manager' },
+      { name: 'employee', description: 'Employee' },
+      { name: 'user', description: 'User' }
+    ];
+    list_roles.forEach((e, i) => {
+      roleSchema.create(e);
+    });
+
+    // create vehicle type
+    let vehicleTypeSchema = require('./models/vehicleTypes.model');
+    let list_vehicleTypes = [
+      { name: 'car', description: 'car' },
+      { name: 'motorbike', description: 'motorbike' }
+    ];
+    list_vehicleTypes.forEach((e, i) => {
+      vehicleTypeSchema.create(e);
+    });
+
+    // create company primary and user admin
+    let companySchema = require('./models/companies.model');
+    let userSchema = require('./models/users.model');
+    companySchema.create({ name: 'Hat Dau Nho', address: 'Ha Noi', port: ['A', 'B', 'C', 'D'] })
+      .then((data) => {
+        userSchema.create({
+          "balance": 10000000,
+          "account": "admin",
+          "password": "123456a@",
+          "name": "Lai The Hiep",
+          "companyId": data._id,
+          "cmt": "021219972",
+          "phone": "0123456789",
+          "email": "hatdaunho0212@gmail.com",
+          "role": "admin",
+          "numberPlate": "29C100000",
+          "description": "Hiep dep trai",
+          "vehicleColor": "Black and Red",
+          "vehicleBranch": "Honda Air Blade",
+          "vehicleType": "car",
+        });
+      })
+      .catch((err) => {
+        companySchema.findOne({name: 'Hat Dau Nho'}).then((data) => {
+          userSchema.create({
+            "balance": 10000000,
+            "account": "admin",
+            "password": "123456a@",
+            "name": "Lai The Hiep",
+            "companyId": data._id,
+            "cmt": "021219972",
+            "phone": "0123456789",
+            "email": "hatdaunho0212@gmail.com",
+            "role": "admin",
+            "numberPlate": "29C100000",
+            "description": "Hiep dep trai",
+            "vehicleColor": "Black and Red",
+            "vehicleBranch": "Honda Air Blade",
+            "vehicleType": "car",
+          });
+        });
+      });
   },
 
   createToken(obj) {
