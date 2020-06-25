@@ -13,6 +13,9 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
+// int folder store images
+Utils.setupFolder();
+
 // init database
 Utils.setupDatabase();
 
@@ -60,6 +63,10 @@ Utils.get(app, vehicleType, vehicleType_link);
 Utils.post(app, vehicleType, vehicleType_link);
 Utils.put(app, vehicleType, vehicleType_link);
 Utils.delete(app, vehicleType, vehicleType_link);
+
+// upload file
+const parkingTicket_api = require('./api/parkingtickets.api');
+parkingTicket_api.uploadImage(app);
 
 // Start the server
 const server = app.listen(port, (error) => {

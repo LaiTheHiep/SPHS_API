@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const env = require('./const_env');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 module.exports = {
   connect() {
@@ -39,7 +40,7 @@ module.exports = {
     let list_roles = [
       { name: 'admin', description: 'Admin' },
       { name: 'manager', description: 'Manager' },
-      { name: 'employee', description: 'Employee' },
+      { name: 'security', description: 'Security' },
       { name: 'user', description: 'User' }
     ];
     list_roles.forEach((e, i) => {
@@ -79,7 +80,7 @@ module.exports = {
         });
       })
       .catch((err) => {
-        companySchema.findOne({name: 'Hat Dau Nho'}).then((data) => {
+        companySchema.findOne({ name: 'Hat Dau Nho' }).then((data) => {
           userSchema.create({
             "balance": 10000000,
             "account": "admin",
@@ -100,11 +101,24 @@ module.exports = {
       });
   },
 
+  setupFolder() {
+    if (!fs.existsSync(env.ROOT_IMAGES)) {
+      fs.mkdirSync(env.ROOT_IMAGES)
+    }
+
+    Object.keys(env.db_collection).forEach((e, i) => {
+      if (!fs.existsSync(env.ROOT_IMAGES + '\\' + env.db_collection[e])) {
+        fs.mkdirSync(env.ROOT_IMAGES + '\\' + env.db_collection[e]);
+      }
+    });
+  },
+
   createToken(obj) {
     let token = jwt.sign(
       {
         account: obj.account,
         role: obj.role,
+        companyId: obj.companyId,
         time: Date.now()
       },
       env.PRIVATE_KEY,
@@ -323,6 +337,7 @@ module.exports = {
               errorName: err.name,
               errorMessage: err.message
             });
+            return;
           }
 
           res.send({

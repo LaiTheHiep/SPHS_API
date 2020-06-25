@@ -10,6 +10,8 @@ exports.url = url;
 exports.db_name = db_name;
 exports.url_db = url_db;
 
+exports.ROOT_IMAGES = 'C:\\SPHS_images';
+
 // collection name
 exports.db_collection = {
   roles: 'roles',
@@ -38,26 +40,26 @@ exports.EXPIRY_TOKEN = EXPIRY_TOKEN;
 exports.FORBIDDEN = {
   get: {
     admin: [],
+    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`]
   },
   post: {
     admin: [],
+    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.packingTickets}`]
   },
   put: {
     admin: [],
-    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`],
+    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`],
     user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`, `/${this.db_collection.packingTickets}`]
   },
   delete: {
     admin: [],
+    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    employee: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.packingTickets}`, `/${this.db_collection.users}`, `/${this.db_collection.transactions}`]
   }
 };
