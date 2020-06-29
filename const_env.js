@@ -2,7 +2,8 @@ exports.hostname = '127.0.0.1';
 exports.port = '8080';
 
 // Mongo
-const url = 'mongodb://localhost:27017/';
+// const url = 'mongodb://localhost:27017/';
+const url = 'mongodb+srv://LaiTheHiep:kingstar02@cluster0-zzvmx.mongodb.net/SPHS_DB?retryWrites=true&w=majority';
 const db_name = 'SPHS_DB';
 const url_db = url + db_name;
 
@@ -25,7 +26,7 @@ exports.db_collection = {
 // limit get list data
 const skip = 0;
 const limit = 200;
-const sort = {createdAt: -1};
+const sort = { createdAt: -1 };
 
 exports.skip = skip;
 exports.limit = limit;

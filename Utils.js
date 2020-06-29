@@ -225,16 +225,16 @@ module.exports = {
           _sort[_arr_sort[0].trim()] = parseInt(_arr_sort[1].trim())
           delete query['$sort'];
         }
-        objectSchema.find(query).skip(_skip).limit(_limit).sort({ ..._sort }).exec((err, data) => {
-          if (err) {
-            res.send({
-              total: 0,
-              data: [],
-              errorName: err.name,
-              errorMessage: err.message
-            });
-            return;
-          }
+        objectSchema.find(query).skip(_skip).limit(_limit).sort({ ..._sort }).then((data) => {
+          // if (err) {
+          //   res.send({
+          //     total: 0,
+          //     data: [],
+          //     errorName: err.name,
+          //     errorMessage: err.message
+          //   });
+          //   return;
+          // }
 
           res.send({
             total: data.length,
@@ -281,6 +281,13 @@ module.exports = {
             }
           })
           .catch((err) => {
+            if (err.result && err.result.ok) {
+              res.send({
+                total: 1,
+                data: []
+              });
+              return;
+            }
             res.send({
               total: 0,
               data: [],
@@ -331,6 +338,13 @@ module.exports = {
         query.updatedAt = date.toLocaleString();
         objectSchema.update({ _id: id }, { $set: { ...query } }).exec((err, data) => {
           if (err) {
+            if (err.result && err.result.ok) {
+              res.send({
+                total: 1,
+                data: []
+              });
+              return;
+            }
             res.send({
               total: 0,
               data: [],
@@ -392,6 +406,13 @@ module.exports = {
             });
           })
           .catch((err) => {
+            if (err.result && err.result.ok) {
+              res.send({
+                total: 1,
+                data: []
+              });
+              return;
+            }
             res.send({
               total: 0,
               data: [],

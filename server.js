@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 Utils.setupFolder();
 
 // init database
-Utils.setupDatabase();
+// Utils.setupDatabase();
 
 const role = require('./models/roles.model');
 const role_link = `/${env.db_collection.roles}`;
