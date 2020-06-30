@@ -5,7 +5,7 @@ const fs = require('fs');
 
 module.exports = {
   connect() {
-    mongoose.connect(env.url_db, {useNewUrlParser: true, useUnifiedTopology: true});
+    mongoose.connect(env.url_db, { useNewUrlParser: true, useUnifiedTopology: true });
   },
 
   setupDatabase() {
@@ -140,7 +140,7 @@ module.exports = {
 
     var userSchema = require('./models/users.model');
     this.connect();
-    var data = await userSchema.findOne({ account: _userToken.account, role: _userToken.account });
+    var data = await userSchema.findOne({ account: _userToken.account, role: _userToken.role });
     if (!data) {
       return {
         errorName: '404',
