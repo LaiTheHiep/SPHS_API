@@ -41,7 +41,7 @@ exports.EXPIRY_TOKEN = EXPIRY_TOKEN;
 exports.FORBIDDEN = {
   get: {
     admin: [],
-    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
+    security: [`/${this.db_collection.roles}`, `/${this.db_collection.vehicleTypes}`],
     manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
     user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`]
   },
