@@ -7,7 +7,7 @@ var Utils = require('../Utils');
 module.exports = {
   uploadImage(app) {
     let _date = new Date();
-    const _rootFolder = `${env.ROOT_IMAGES}\\${env.db_collection.packingTickets}\\${_date.getFullYear()}${_date.getMonth()}${_date.getDate()}`;
+    const _rootFolder = `${env.ROOT_IMAGES}\\${env.db_collection.packingTickets}\\${_date.getFullYear()}${`${_date.getMonth() + 1}`.padStart(2, '0')}${_date.getDate()}`;
     if (!fs.existsSync(_rootFolder)) {
       fs.mkdirSync(_rootFolder);
     }
