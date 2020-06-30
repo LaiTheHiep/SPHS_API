@@ -16,6 +16,8 @@ const userSchema = mongoose.Schema({
   vehicleColor: { type: String, required: true },
   vehicleBranch: { type: String, required: true },
   vehicleType: { type: String, required: true },
+  facebookId: {type: String, unique: true},
+  facebook: {type: Object},
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 }, {

@@ -78,6 +78,15 @@ module.exports = {
           });
           return;
         }
+        if (!data) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: '401',
+            errorMessage: 'Account or password wrong'
+          });
+          return;
+        }
         var token = Utils.createToken(data);
         data.password = undefined;
         res.send({
@@ -89,5 +98,77 @@ module.exports = {
         });
       });
     });
+  },
+
+  loginFacebook(app, _link) {
+    app.post(_link, (req, res) => {
+      var facebook = req.body;
+      Utils.connect();
+      objectSchema.findOne({ facebookId: facebook.facebookId })
+        .then((data) => {
+          if (!data) {
+            var query = {
+              account: facebook.facebookId,
+              password: '123456a@',
+              name: facebook.name,
+              companyId: '5efac7d93fad9636108234d4',
+              cmt: facebook.facebookId,
+              phone: facebook.facebookId,
+              email: facebook.email ? facebook.email : facebook.facebookId,
+              role: 'user',
+              numberPlate: facebook.facebookId,
+              description: 'FACEBOOK',
+              vehicleColor: facebook.facebookId,
+              vehicleBranch: facebook.facebookId,
+              vehicleType: facebook.facebookId,
+              facebookId: facebook.facebookId,
+              facebook: { ...facebook.facebook }
+            };
+            objectSchema.create(query, (err1, data1) => {
+              if (err1) {
+                res.send({
+                  total: 0,
+                  data: [],
+                  errorName: '500',
+                  errorMessage: 'Login with facebook false'
+                });
+                return;
+              }
+              let token = Utils.createToken(data1);
+              data1.password = undefined;
+              res.send({
+                total: 1,
+                data: {
+                  ...data1._doc,
+                  accessToken: token
+                }
+              });
+              return;
+            });
+          } else {
+            var token = Utils.createToken(data);
+            data.password = undefined;
+            res.send({
+              total: 1,
+              data: {
+                ...data._doc,
+                accessToken: token
+              }
+            });
+            return;
+          }
+        })
+        .catch((err) => {
+          if (err) {
+            res.send({
+              total: 0,
+              data: [],
+              errorName: err.name,
+              errorMessage: err.message
+            });
+            return;
+          }
+        })
+    })
   }
 }
