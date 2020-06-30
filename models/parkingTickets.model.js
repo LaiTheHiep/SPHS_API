@@ -10,6 +10,12 @@ const parkingTicketsSchema = mongoose.Schema({
   imageOut: { type: String },
   author: { type: String, required: true }, // employee
   userId: { type: String, required: true }, // vehicle parked
+}, {
+  writeConcern: {
+    w: 'majority',
+    j: true,
+    wtimeout: 1000
+  }
 });
 
 

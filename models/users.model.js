@@ -18,6 +18,12 @@ const userSchema = mongoose.Schema({
   vehicleType: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
+}, {
+  writeConcern: {
+    w: 'majority',
+    j: true,
+    wtimeout: 1000
+  }
 });
 
 

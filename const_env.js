@@ -3,7 +3,7 @@ exports.port = '8080';
 
 // Mongo
 // const url = 'mongodb://localhost:27017/';
-const url = 'mongodb+srv://LaiTheHiep:kingstar02@cluster0-zzvmx.mongodb.net/SPHS_DB?retryWrites=true&w=majority';
+const url = 'mongodb+srv://LaiTheHiep:kingstar02@clustersphs.gzqky.mongodb.net/SPHS_DB?retryWrites=true&w=majority';
 const db_name = 'SPHS_DB';
 const url_db = url + db_name;
 

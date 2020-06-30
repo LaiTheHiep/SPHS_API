@@ -5,7 +5,7 @@ const fs = require('fs');
 
 module.exports = {
   connect() {
-    mongoose.connect(env.url_db);
+    mongoose.connect(env.url_db, {useNewUrlParser: true, useUnifiedTopology: true});
   },
 
   setupDatabase() {
