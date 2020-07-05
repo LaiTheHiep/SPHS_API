@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
+    "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.31",
@@ -27,6 +28,7 @@
     "nodemon": "^2.0.4",
     "swagger-ui-express": "^4.1.4",
     "sync-request": "^6.1.0",
+    "unirest": "^0.6.0",
     "validator": "^13.0.0"
   }
 }
