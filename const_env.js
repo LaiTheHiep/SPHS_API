@@ -1,5 +1,5 @@
 exports.hostname = '127.0.0.1';
-exports.port = '8080';
+exports.port = process.env.PORT || '8080';
 
 // Mongo
 // const url = 'mongodb://localhost:27017/';
