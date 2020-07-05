@@ -32,6 +32,8 @@ exports.skip = skip;
 exports.limit = limit;
 exports.sort = sort;
 
+exports.IMG_BB_KEY = 'bbda9cabea0a8e3852cbe26df54d959c';
+exports.IMG_BB_IMAGE_UPLOAD = 'https://api.imgbb.com/1/upload';
 const PRIVATE_KEY = 'Hat Dau Nho - Manchester United';
 exports.PRIVATE_KEY = PRIVATE_KEY;
 
