@@ -40,6 +40,16 @@ module.exports = {
           _limit = parseInt(query['$limit']);
           delete query['$limit'];
         }
+        if (query['$regex']) {
+          let regex_arr = JSON.parse(query['$regex']);
+          regex_arr.forEach((e) => {
+            query[e.name] = {
+              $regex: e.value,
+              $options: e['$options']
+            }
+          });
+          delete query['$regex'];
+        }
         objectSchema.find(query).skip(_skip).limit(_limit).exec((err, data) => {
           if (err) {
             res.send({

@@ -225,6 +225,16 @@ module.exports = {
           _sort[_arr_sort[0].trim()] = parseInt(_arr_sort[1].trim())
           delete query['$sort'];
         }
+        if (query['$regex']) {
+          let regex_arr = JSON.parse(query['$regex']);
+          regex_arr.forEach((e) => {
+            query[e.name] = {
+              $regex: e.value,
+              $options: e['$options']
+            }
+          });
+          delete query['$regex'];
+        }
         objectSchema.find(query).skip(_skip).limit(_limit).sort({ ..._sort }).then((data) => {
           // if (err) {
           //   res.send({
