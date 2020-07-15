@@ -194,9 +194,26 @@ module.exports = {
           return;
         }
         this.connect();
-        var _query = req.query;
-        delete _query['accessToken'];
-        objectSchema.count({ ..._query }).then((data) => {
+        var query = req.query;
+        delete query['accessToken'];
+        if (query['$sort']) {
+          let _temp_sort = query['$sort'].trim().substring(1, query['$sort'].trim().length - 1);
+          let _arr_sort = _temp_sort.split(':');
+          _sort = {};
+          _sort[_arr_sort[0].trim()] = parseInt(_arr_sort[1].trim())
+          delete query['$sort'];
+        }
+        if (query['$regex']) {
+          let regex_arr = JSON.parse(query['$regex']);
+          regex_arr.forEach((e) => {
+            query[e.name] = {
+              $regex: e.value,
+              $options: e['$options']
+            }
+          });
+          delete query['$regex'];
+        }
+        objectSchema.count({ ...query }).then((data) => {
           res.send({
             total: data
           });
