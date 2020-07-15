@@ -25,6 +25,7 @@ Utils.get(app, role, role_link);
 Utils.post(app, role, role_link);
 Utils.put(app, role, role_link);
 Utils.delete(app, role, role_link);
+Utils.getTotal(app, role, `${role_link}-total`);
 
 const user = require('./models/users.model');
 const user_link = `/${env.db_collection.users}`;
@@ -36,6 +37,7 @@ user_api.get(app);
 Utils.post(app, user, user_link);
 Utils.put(app, user, user_link);
 Utils.delete(app, user, user_link);
+Utils.getTotal(app, user, `${user_link}-total`);
 
 const parkingTicket = require('./models/parkingTickets.model');
 const parkingTicket_link = `/${env.db_collection.packingTickets}`;
@@ -43,6 +45,7 @@ Utils.get(app, parkingTicket, parkingTicket_link);
 Utils.post(app, parkingTicket, parkingTicket_link);
 Utils.put(app, parkingTicket, parkingTicket_link);
 Utils.delete(app, parkingTicket, parkingTicket_link);
+Utils.getTotal(app, parkingTicket, `${parkingTicket_link}-total`);
 
 const company = require('./models/companies.model');
 const company_link = `/${env.db_collection.companies}`;
@@ -50,6 +53,7 @@ Utils.get(app, company, company_link);
 Utils.post(app, company, company_link);
 Utils.put(app, company, company_link);
 Utils.delete(app, company, company_link);
+Utils.getTotal(app, company, `${company_link}-total`);
 
 const transaction = require('./models/transactions.model');
 const transaction_link = `/${env.db_collection.transactions}`;
@@ -57,6 +61,7 @@ Utils.get(app, transaction, transaction_link);
 Utils.post(app, transaction, transaction_link);
 Utils.put(app, transaction, transaction_link);
 Utils.delete(app, transaction, transaction_link);
+Utils.getTotal(app, transaction, `${transaction_link}-total`);
 
 const vehicleType = require('./models/vehicleTypes.model');
 const vehicleType_link = `/${env.db_collection.vehicleTypes}`;
@@ -64,6 +69,7 @@ Utils.get(app, vehicleType, vehicleType_link);
 Utils.post(app, vehicleType, vehicleType_link);
 Utils.put(app, vehicleType, vehicleType_link);
 Utils.delete(app, vehicleType, vehicleType_link);
+Utils.getTotal(app, vehicleType, `${vehicleType_link}-total`);
 
 // upload file
 const parkingTicket_api = require('./api/parkingtickets.api');

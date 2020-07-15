@@ -181,6 +181,28 @@ module.exports = {
     return false;
   },
 
+  getTotal(app, objectSchema, link) {
+    app.get(link, (req, res) => {
+      this.checkToken(req.query.accessToken).then((dataToken) => {
+        if (dataToken.errorMessage) {
+          res.send({
+            total: 0,
+            data: [],
+            errorName: dataToken.errorName,
+            errorMessage: dataToken.errorMessage
+          });
+          return;
+        }
+        this.connect();
+        objectSchema.count({}).then((res) => {
+          res.send({
+            total: res
+          });
+        });
+      });
+    });
+  },
+
   get(app, objectSchema, link) {
     app.get(link, (req, res) => {
       this.checkToken(req.query.accessToken).then((dataToken) => {
