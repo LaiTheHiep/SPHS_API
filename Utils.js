@@ -196,9 +196,9 @@ module.exports = {
         this.connect();
         var _query = req.query;
         delete _query['accessToken'];
-        objectSchema.count({ ..._query }).then((res) => {
+        objectSchema.count({ ..._query }).then((data) => {
           res.send({
-            total: res
+            total: data
           });
         });
       });
