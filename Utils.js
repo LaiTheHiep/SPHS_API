@@ -259,6 +259,11 @@ module.exports = {
           _limit = parseInt(query['$limit']);
           delete query['$limit'];
         }
+        if (query['$in']) {
+          let _in_temp = JSON.parse(query['$in']);
+          query[_in_temp.name] = { '$in': _in_temp.value };
+          delete query['$in'];
+        }
         if (query['$sort']) {
           let _temp_sort = query['$sort'].trim().substring(1, query['$sort'].trim().length - 1);
           let _arr_sort = _temp_sort.split(':');
