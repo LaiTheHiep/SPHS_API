@@ -183,5 +183,36 @@ module.exports = {
           }
         })
     })
+  },
+
+  register(app, _link) {
+    app.post(_link, (req, res) => {
+      var query = req.body;
+      query['companyId'] = 'register';
+      query['role'] = 'user';
+      Utils.connect();
+      objectSchema.create(query).then((data) => {
+        if (data) {
+          res.send({
+            total: 1,
+            data: [data]
+          });
+          return;
+        }
+      }).catch((err) => {
+        if (err.result && err.result.ok) {
+          res.send({
+            total: 1,
+            data: []
+          });
+          return;
+        }
+        res.send({
+          total: 0,
+          data: [],
+          errorMessage: 'Create item false'
+        });
+      });
+    });
   }
 }

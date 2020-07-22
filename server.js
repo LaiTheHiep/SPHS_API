@@ -31,6 +31,7 @@ const user = require('./models/users.model');
 const user_link = `/${env.db_collection.users}`;
 const user_api = require('./api/users.api');
 user_api.authentication(app, '/authentication');
+user_api.register(app, '/register');
 user_api.loginFacebook(app, '/login-facebook');
 // Utils.get(app, user, user_link);
 user_api.get(app);
