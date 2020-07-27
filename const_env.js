@@ -20,7 +20,8 @@ exports.db_collection = {
   transactions: 'transactions',
   companies: 'companies',
   packingTickets: 'parkingtickets',
-  vehicleTypes: 'vehicletypes'
+  vehicleTypes: 'vehicletypes',
+  feedBacks: 'feedbacks'
 };
 
 // limit get list data

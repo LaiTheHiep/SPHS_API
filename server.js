@@ -72,6 +72,12 @@ Utils.put(app, vehicleType, vehicleType_link);
 Utils.delete(app, vehicleType, vehicleType_link);
 Utils.getTotal(app, vehicleType, `${vehicleType_link}-total`);
 
+const feedBack = require('./models/feedBacks.model');
+const feedBack_link = `/${env.db_collection.feedBacks}`;
+Utils.get(app, feedBack, feedBack_link);
+Utils.post(app, feedBack, feedBack_link);
+Utils.getTotal(app, feedBack, `${feedBack_link}-total`);
+
 // upload file
 const parkingTicket_api = require('./api/parkingtickets.api');
 parkingTicket_api.uploadImage(app);
