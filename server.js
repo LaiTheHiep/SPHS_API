@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // int folder store images
-Utils.setupFolder();
+// Utils.setupFolder();
 
 // init database
 // Utils.setupDatabase();
