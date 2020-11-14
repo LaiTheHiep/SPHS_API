@@ -78,6 +78,22 @@ Utils.get(app, feedBack, feedBack_link);
 Utils.post(app, feedBack, feedBack_link);
 Utils.getTotal(app, feedBack, `${feedBack_link}-total`);
 
+const device = require('./models/devices.model');
+const device_link = `/${env.db_collection.devices}`;
+Utils.get(app, device, device_link);
+Utils.post(app, device, device_link);
+Utils.put(app, device, device_link);
+Utils.delete(app, device, device_link);
+Utils.getTotal(app, device, `${device_link}-total`);
+
+const card = require('./models/cards.model');
+const card_link = `/${env.db_collection.cards}`;
+Utils.get(app, card, card_link);
+Utils.post(app, card, card_link);
+Utils.put(app, card, card_link);
+Utils.delete(app, card, card_link);
+Utils.getTotal(app, card, `${card_link}-total`);
+
 // upload file
 const parkingTicket_api = require('./api/parkingtickets.api');
 parkingTicket_api.uploadImage(app);

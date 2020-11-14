@@ -21,7 +21,9 @@ exports.db_collection = {
   companies: 'companies',
   packingTickets: 'parkingtickets',
   vehicleTypes: 'vehicletypes',
-  feedBacks: 'feedbacks'
+  feedBacks: 'feedbacks',
+  devices: 'devices',
+  cards: 'cards'
 };
 
 // limit get list data
@@ -44,26 +46,95 @@ exports.EXPIRY_TOKEN = EXPIRY_TOKEN;
 exports.FORBIDDEN = {
   get: {
     admin: [],
-    security: [`/${this.db_collection.roles}`, `/${this.db_collection.vehicleTypes}`],
-    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`]
+    security: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`
+    ],
+    manager: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`],
+    user: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`,
+      `/${this.db_collection.cards}`
+    ]
   },
   post: {
     admin: [],
-    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.packingTickets}`]
+    security: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`
+    ],
+    manager: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`
+    ],
+    user: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.packingTickets}`,
+      `/${this.db_collection.devices}`,
+      `/${this.db_collection.cards}`
+    ]
   },
   put: {
     admin: [],
-    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`],
-    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.transactions}`, `/${this.db_collection.packingTickets}`]
+    security: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`
+    ],
+    manager: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.transactions}`,
+      `/${this.db_collection.devices}`
+    ],
+    user: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.transactions}`,
+      `/${this.db_collection.packingTickets}`,
+      `/${this.db_collection.devices}`,
+      `/${this.db_collection.cards}`
+    ]
   },
   delete: {
     admin: [],
-    security: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    manager: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`],
-    user: [`/${this.db_collection.roles}`, `/${this.db_collection.companies}`, `/${this.db_collection.vehicleTypes}`, `/${this.db_collection.packingTickets}`, `/${this.db_collection.users}`, `/${this.db_collection.transactions}`]
+    security: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`
+    ],
+    manager: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.devices}`
+    ],
+    user: [
+      `/${this.db_collection.roles}`,
+      `/${this.db_collection.companies}`,
+      `/${this.db_collection.vehicleTypes}`,
+      `/${this.db_collection.packingTickets}`,
+      `/${this.db_collection.users}`,
+      `/${this.db_collection.transactions}`,
+      `/${this.db_collection.devices}`,
+      `/${this.db_collection.cards}`
+    ]
   }
 };

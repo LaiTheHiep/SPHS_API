@@ -18,6 +18,8 @@ const userSchema = mongoose.Schema({
   vehicleType: { type: String, required: true },
   facebookId: {type: String, unique: true},
   facebook: {type: Object},
+  cardIds: { type: [String], default: [] },
+  devicesAccess: {type: Object},
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 }, {
