@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const env = require('../const_env');
 
-const deviceSchema = mongoose.Schema({
+const cardSchema = mongoose.Schema({
   name: { type: String, unique: true, required: true },
   deviceId: { type: String, required: true },
   expired: { type: Date },
@@ -17,4 +17,4 @@ const deviceSchema = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model(env.db_collection.devices, deviceSchema);
+module.exports = mongoose.model(env.db_collection.cards, cardSchema);
