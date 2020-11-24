@@ -94,7 +94,7 @@ module.exports = {
 
       var dateStart = req.query.dateStart;
       var dateEnd = req.query.dateEnd;
-      var timeCalculate = req.query.timeCalculate;
+      var timeCalculate = parseInt(req.query.timeCalculate);
       var userId = req.query.userId;
       var timeStart = req.query.timeStart;
       var timeEnd = req.query.timeEnd;
@@ -117,11 +117,12 @@ module.exports = {
       while (end - start >= 0) {
         var startTemp = new Date(`${start.toDateString()} ${timeStart}`);
         var endTemp = new Date(`${start.toDateString()} ${timeEnd}`);
-        startTemp.setMinutes(startTemp.getMinutes() + timeCalculate);
+        startTemp.setMinutes(startTemp.getMinutes() - timeCalculate);
         endTemp.setMinutes(endTemp.getMinutes() + timeCalculate);
 
         Utils.connect();
         var resData = await ObjectSchema.find({
+          description: 'event',
           timeIn: {
             $gte: startTemp,
             $lt: endTemp
