@@ -53,7 +53,6 @@ exports.FORBIDDEN = {
     ],
     manager: [
       `/${this.db_collection.roles}`,
-      `/${this.db_collection.companies}`,
       `/${this.db_collection.vehicleTypes}`],
     user: [
       `/${this.db_collection.roles}`,
