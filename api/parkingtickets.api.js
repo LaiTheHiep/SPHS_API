@@ -94,14 +94,16 @@ module.exports = {
 
       var dateStart = req.query.dateStart;
       var dateEnd = req.query.dateEnd;
-      var timeCalculate = parseInt(req.query.timeCalculate);
+      var timeCalculate = 0;
+      var timeCalculateParse = parseInt(req.query.timeCalculate);
       var userId = req.query.userId;
       var timeStart = req.query.timeStart;
       var timeEnd = req.query.timeEnd;
 
       var start = new Date(dateStart);
       var end = new Date(dateEnd);
-      if (!timeCalculate) timeCalculate = 0;
+      if (!timeCalculateParse) timeCalculate = 0;
+      else timeCalculate = timeCalculateParse;
 
       if (!dateStart || !dateEnd || !userId || !timeStart || !timeEnd || end - start <= 0) {
         res.send({
