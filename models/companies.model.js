@@ -4,8 +4,8 @@ const env = require('../const_env');
 const companySchema = mongoose.Schema({
   name: { type: String, unique: true, required: true },
   address: { type: String, required: true },
-  timeStart: { type: [String] },
-  timeEnd: { type: [String] },
+  timeStart: { type: String },
+  timeEnd: { type: String },
   ports: { type: [String], default: [] }, // ports = [] - building
   parent: { type: String },
   description: { type: String },
