@@ -97,6 +97,7 @@ Utils.getTotal(app, card, `${card_link}-total`);
 // upload file
 const parkingTicket_api = require('./api/parkingtickets.api');
 parkingTicket_api.uploadImage(app);
+parkingTicket_api.workDay(app);
 
 // Start the server
 const server = app.listen(port, (error) => {

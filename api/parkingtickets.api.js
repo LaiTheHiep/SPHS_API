@@ -69,5 +69,81 @@ module.exports = {
     });
   },
 
+  workDay(app) {
+    app.get('/work-days', async (req, res) => {
+      var dataToken = await Utils.checkToken(req.query.accessToken)
+      if (dataToken.errorMessage) {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: dataToken.errorName,
+          errorMessage: dataToken.errorMessage
+        });
+        return;
+      }
 
+      if (dataToken.role != 'manager') {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: '403',
+          errorMessage: 'Account can not access system by function'
+        });
+        return;
+      }
+
+      var dateStart = req.query.dateStart;
+      var dateEnd = req.query.dateEnd;
+      var timeCalculate = req.query.timeCalculate;
+      var userId = req.query.userId;
+      var timeStart = req.query.timeStart;
+      var timeEnd = req.query.timeEnd;
+
+      var start = new Date(dateStart);
+      var end = new Date(dateEnd);
+      if (!timeCalculate) timeCalculate = 0;
+
+      if (!dateStart || !dateEnd || !userId || !timeStart || !timeEnd || end - start <= 0) {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: '400',
+          errorMessage: 'Bad Request'
+        })
+        return;
+      }
+
+      var data = [];
+      while (end - start >= 0) {
+        var startTemp = new Date(`${start.toDateString()} ${timeStart}`);
+        var endTemp = new Date(`${start.toDateString()} ${timeEnd}`);
+        startTemp.setMinutes(startTemp.getMinutes() + timeCalculate);
+        endTemp.setMinutes(endTemp.getMinutes() + timeCalculate);
+
+        Utils.connect();
+        var resData = await ObjectSchema.find({
+          timeIn: {
+            $gte: startTemp,
+            $lt: endTemp
+          }
+        }).sort({ timeIn: 1 });
+
+        if (resData.length > 0) {
+          data.push({
+            date: startTemp.toLocaleDateString(),
+            start: resData[0].timeIn,
+            end: resData[resData.length - 1].timeIn
+          });
+        }
+
+        start.setDate(start.getDate() + 1);
+      }
+
+      res.send({
+        total: data.length,
+        data: data
+      })
+
+    });
+  },
 }
