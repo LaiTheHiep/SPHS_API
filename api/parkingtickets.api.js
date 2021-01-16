@@ -225,12 +225,18 @@ module.exports = {
             errorMessage: 'Error'
           });
         }
-        req.body.forEach(e => {
+        var tickets = req.body;
+        tickets.forEach(e => {
           var userSchema = require('../models/users.model');
           if (e.description !== '0') {
+            // Utils.connect();
             userSchema.findById(e.userId, (errUser, resUser) => {
+              console.log('err find: ' + errUser)
               if (resUser) {
-                userSchema.update({ _id: e.userId }, { $set: { balance: resUser.balance - parseInt(e.description) } }).exec((err, data) => { });
+                // Utils.connect();
+                userSchema.update({ _id: e.userId }, { $set: { balance: resUser.balance - parseInt(e.description) } }).exec((errUpdate, dataUpdate) => {
+                  console.log('err update: ' + errUpdate)
+                });
               }
             });
           }
