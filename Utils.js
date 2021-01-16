@@ -137,7 +137,6 @@ module.exports = {
       };
     }
     let _userToken = jwt.decode(token);
-
     var userSchema = require('./models/users.model');
     this.connect();
     var data = await userSchema.findOne({ account: _userToken.account, role: _userToken.role });

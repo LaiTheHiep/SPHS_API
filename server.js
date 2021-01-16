@@ -98,6 +98,8 @@ Utils.getTotal(app, card, `${card_link}-total`);
 const parkingTicket_api = require('./api/parkingtickets.api');
 parkingTicket_api.uploadImage(app);
 parkingTicket_api.workDay(app);
+parkingTicket_api.postEvent(app);
+parkingTicket_api.postTicket(app);
 
 // Start the server
 const server = app.listen(port, (error) => {

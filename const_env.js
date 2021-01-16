@@ -91,14 +91,14 @@ exports.FORBIDDEN = {
       `/${this.db_collection.roles}`,
       `/${this.db_collection.companies}`,
       `/${this.db_collection.vehicleTypes}`,
-      `/${this.db_collection.devices}`
+      // `/${this.db_collection.devices}`
     ],
     manager: [
       `/${this.db_collection.roles}`,
       `/${this.db_collection.companies}`,
       `/${this.db_collection.vehicleTypes}`,
       `/${this.db_collection.transactions}`,
-      `/${this.db_collection.devices}`
+      // `/${this.db_collection.devices}`
     ],
     user: [
       `/${this.db_collection.roles}`,

@@ -149,4 +149,97 @@ module.exports = {
 
     });
   },
+
+  postEvent(app) {
+    app.post('/update-event-async', async (req, res) => {
+      var dataToken = await Utils.checkToken(req.query.accessToken);
+      if (dataToken.errorMessage) {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: dataToken.errorName,
+          errorMessage: dataToken.errorMessage
+        });
+        return;
+      }
+
+      if (dataToken.role != 'admin') {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: '403',
+          errorMessage: 'Account can not access system by function'
+        });
+        return;
+      }
+
+      Utils.connect();
+      ObjectSchema.create(req.body, (err, documents) => {
+        if (err) {
+          res.send({
+            total: req.body.length,
+            data: req.body,
+            errorName: '422',
+            errorMessage: 'Error'
+          });
+        }
+
+        res.send({
+          total: 0,
+          data: [],
+        })
+      })
+    })
+  },
+
+  postTicket(app) {
+    app.post('/update-ticket-async', async (req, res) => {
+      var dataToken = await Utils.checkToken(req.query.accessToken);
+      if (dataToken.errorMessage) {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: dataToken.errorName,
+          errorMessage: dataToken.errorMessage
+        });
+        return;
+      }
+
+      if (dataToken.role != 'admin') {
+        res.send({
+          total: 0,
+          data: [],
+          errorName: '403',
+          errorMessage: 'Account can not access system by function'
+        });
+        return;
+      }
+
+      Utils.connect();
+      ObjectSchema.create(req.body, (err, documents) => {
+        if (err) {
+          res.send({
+            total: req.body.length,
+            data: req.body,
+            errorName: '422',
+            errorMessage: 'Error'
+          });
+        }
+        req.body.forEach(e => {
+          var userSchema = require('../models/users.model');
+          if (e.description !== '0') {
+            userSchema.findById(e.userId, (errUser, resUser) => {
+              if (resUser) {
+                userSchema.update({ _id: e.userId }, { $set: { balance: resUser.balance - parseInt(e.description) } }).exec((err, data) => { });
+              }
+            });
+          }
+        });
+        res.send({
+          total: 0,
+          data: [],
+        })
+      })
+    })
+  },
 }
