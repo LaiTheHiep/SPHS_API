@@ -30,6 +30,6 @@
     "swagger-ui-express": "^4.1.4",
     "sync-request": "^6.1.0",
     "unirest": "^0.6.0",
-    "validator": "^13.0.0"
+    "validator": "^13.7.0"
   }
 }
